@@ -7,7 +7,6 @@ foreach (char c in letters)
 {
     int digit = c - '0';
     digitsToCount[digit]++;
-    Console.WriteLine(digitsToCount[digit]);
 }
 
 for (int i = 0; i < digitsToCount.Length; i++)
