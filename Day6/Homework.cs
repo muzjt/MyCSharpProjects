@@ -12,7 +12,6 @@ foreach (Employee employee in employees)
         {
             int randomPoints = random.Next(1, 11);
             employee.AddPoints(randomPoints);
-        //Console.WriteLine(randomPoints);
         }
     }
 Employee topEmployee = employees.OrderByDescending(e => e.PointsSummary).FirstOrDefault();
