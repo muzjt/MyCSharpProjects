@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Day5/obj
+/Day5/bin/Debug/net8.0
+/Day5/Homework.cs
+/.vs
+/ConsoleApp1/bin/Debug/net8.0
+/ConsoleApp1/obj/Debug/net8.0
+/ConsoleApp1/obj
+/ConsoleApp1/HomeworkDay4.cs
+/Day6/bin/Debug/net8.0
+/Day6/obj/Debug/net8.0
+/Day6/obj
+/Day6/Program.cs
+/Day6/User.cs
