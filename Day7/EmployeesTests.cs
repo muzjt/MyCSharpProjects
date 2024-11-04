@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 
 namespace Day7
 {
-    public class Tests
+    public class EmployeesTests
     {
         [Test]
         public void CheckIfPointsAddCorrectly()
