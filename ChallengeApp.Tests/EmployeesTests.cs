@@ -3,50 +3,86 @@ namespace ChallengeApp.Tests
     public class EmployeesTests
     {
         [Test]
-        public void CheckIfPointsAddCorrectly()
+        public void CheckIfMinGradeDiffersFromMaxGrade()
         {
             // arrange
-            var employee = new Employee("Marcin", "Kowalski", "32");
-            employee.AddPoints(1);
-            employee.AddPoints(2);
-
+            var employee = new Employee("Krystyna", "Janowicz");
+            Random random = new Random();
+            float randomMin = 1.0f;
+            float randomMax = 10.0f;
             // act
-            var score = employee.PointsSummary;
+            for (int i = 0; i < 5; i++)
+            {
+                float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
+                employee.AddGrade(randomRange);
+            }
+            var statistics = employee.GetStatistics();
 
             // assert
-            Assert.AreEqual(3, score);
+            Assert.AreNotEqual(statistics.Min, statistics.Max);
         }
 
         [Test]
-        public void CheckIfPointsAddAndRemoveCorrectly()
+        public void CheckIfMinGradeIsSmallerThanMaxGrade()
         {
             // arrange
-            var employee = new Employee("Marcin", "Kowalski", "32");
-            employee.AddPoints(1);
-            employee.AddPoints(2);
-            employee.AddPoints(-1);
-
+            var employee = new Employee("Krystyna", "Janowicz");
+            Random random = new Random();
+            float randomMin = 1.0f;
+            float randomMax = 10.0f;
             // act
-            var score = employee.PointsSummary;
+            for (int i = 0; i < 5; i++)
+            {
+                float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
+                employee.AddGrade(randomRange);
+            }
+            var statistics = employee.GetStatistics();
 
             // assert
-            Assert.AreEqual(2, score);
+            Assert.IsTrue(statistics.Min<statistics.Max);
         }
 
         [Test]
-        public void CheckIfScoreEqualsZero()
+        public void CheckIfMaxGradeIsBiggerThanMinGrade()
         {
             // arrange
-            var employee = new Employee("Marcin", "Kowalski", "32");
-            employee.AddPoints(1);
-            employee.AddPoints(2);
-            employee.AddPoints(-3);
-
+            var employee = new Employee("Krystyna", "Janowicz");
+            Random random = new Random();
+            float randomMin = 1.0f;
+            float randomMax = 10.0f;
             // act
-            var score = employee.PointsSummary;
+            for (int i = 0; i < 5; i++)
+            {
+                float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
+                employee.AddGrade(randomRange);
+            }
+            var statistics = employee.GetStatistics();
 
             // assert
-            Assert.AreEqual(0, score);
+            Assert.IsTrue(statistics.Max > statistics.Min);
         }
+
+        [Test]
+        public void CheckIfAverageGradeIsReallyAverage()
+        {
+            // arrange
+            var employee = new Employee("Krystyna", "Janowicz");
+            Random random = new Random();
+            float randomMin = 1.0f;
+            float randomMax = 10.0f;
+            int numberOfGrades = 0;
+            // act
+            for (int i = 0; i < 5; i++)
+            {
+                numberOfGrades++;
+                float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
+                employee.AddGrade(randomRange);
+            }
+            var statistics = employee.GetStatistics();
+
+            // assert
+            Assert.AreEqual(statistics.Average, employee.GradesSummary / numberOfGrades);
+        }
+
     }
 }

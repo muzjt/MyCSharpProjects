@@ -1,18 +1,17 @@
 ﻿using ChallengeApp;
 
-Employee employee1 = new Employee("Ola", "Nowak", "45");
-Employee employee2 = new Employee("Urszula", "Kowalska", "38");
-Employee employee3 = new Employee("Piotr", "Bąk", "42");
-
-List<Employee> employees = new List<Employee> { employee1, employee2, employee3 };
+var employee = new Employee("Antoni", "Nowak");
 Random random = new Random();
-foreach (Employee employee in employees)
+float randomMin = 1.0f;
+float randomMax = 10.0f;
+for (int i = 0; i < 5; i++) 
 {
-    for (int i = 0; i < 5; i++)
-    {
-        int randomPoints = random.Next(1, 11);
-        employee.AddPoints(randomPoints);
-    }
+    float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
+    employee.AddGrade(randomRange);
 }
-Employee topEmployee = employees.OrderByDescending(e => e.PointsSummary).FirstOrDefault();
-Console.WriteLine($"Details of the employee with the highest number of points: {topEmployee.Name} {topEmployee.Surname}, {topEmployee.Age} years old, points: {topEmployee.PointsSummary}");
+
+var statistics = employee.GetStatistics();
+Console.WriteLine($"Average: {statistics.Average:N2}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
+
