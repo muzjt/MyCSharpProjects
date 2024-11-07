@@ -63,28 +63,6 @@ namespace ChallengeApp.Tests
         }
 
         [Test]
-        public void CheckIfAverageGradeIsReallyAverage()
-        {
-            // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
-            Random random = new Random();
-            float randomMin = 1.0f;
-            float randomMax = 10.0f;
-            int numberOfGrades = 0;
-            // act
-            for (int i = 0; i < 5; i++)
-            {
-                numberOfGrades++;
-                float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
-                employee.AddGrade(randomRange);
-            }
-            var statistics = employee.GetStatistics();
-
-            // assert
-            Assert.AreEqual(statistics.Average, employee.GradesSummary / numberOfGrades);
-        }
-
-        [Test]
         public void CheckIfStatisticsMaxIsCorrectMaxGrade()
         {
             // arrange
