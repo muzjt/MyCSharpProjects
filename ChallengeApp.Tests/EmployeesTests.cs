@@ -84,5 +84,53 @@ namespace ChallengeApp.Tests
             Assert.AreEqual(statistics.Average, employee.GradesSummary / numberOfGrades);
         }
 
+        [Test]
+        public void CheckIfStatisticsMaxIsCorrectMaxGrade()
+        {
+            // arrange
+            var employee = new Employee("Krystyna", "Janowicz");
+            employee.AddGrade(2);
+            employee.AddGrade(4);
+            employee.AddGrade(5);
+
+            // act
+            var statistics = employee.GetStatistics();
+
+            // assert
+            Assert.AreEqual(5, statistics.Max);
+        }
+
+        [Test]
+        public void CheckIfStatisticsMinIsCorrectMinGrade()
+        {
+            // arrange
+            var employee = new Employee("Krystyna", "Janowicz");
+            employee.AddGrade(2);
+            employee.AddGrade(4);
+            employee.AddGrade(5);
+
+            // act
+            var statistics = employee.GetStatistics();
+
+            // assert
+            Assert.AreEqual(2, statistics.Min);
+        }
+
+        [Test]
+        public void CheckIfStatisticsAverageIsCorrectAverageGrade()
+        {
+            // arrange
+            var employee = new Employee("Krystyna", "Janowicz");
+            employee.AddGrade(2);
+            employee.AddGrade(4);
+            employee.AddGrade(5);
+
+            // act
+            var statistics = employee.GetStatistics();
+
+            // assert
+            Assert.AreEqual(Math.Round(3.67, 2), Math.Round(statistics.Average, 2));
+        }
+
     }
 }
