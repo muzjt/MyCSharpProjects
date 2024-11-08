@@ -44,78 +44,39 @@ namespace ChallengeApp
 
         public void AddGrade(int grade)
         {
-            if (grade >= 0 && grade <= 100)
-            {
-                float intToFloatGrade = (float)grade;
-                this.grades.Add(intToFloatGrade);
-                Console.WriteLine($"Converted int({grade}) to float({intToFloatGrade}) and added to the list");
-            }
-            else
-            {
-                Console.WriteLine("Initial int exceeds intended scope");
-            }
-
+            
+         float intToFloatGrade = (float)grade;
+         this.AddGrade(intToFloatGrade);
         }
 
         public void AddGrade(string grade) 
         {
             if (float.TryParse(grade, out float result))
             {
-                if (result >= 0 && result <= 100)
-                {
-                    this.grades.Add(result);
-                    Console.WriteLine($"Converted string({grade}) to float({result}) and added to the list");
-                }
-                else
-                {
-                    Console.WriteLine("Initial string exceeds intended scope");
-                }
-            }
+                this.AddGrade(result);
+            } 
             else 
             {
-                Console.WriteLine("Unable to convert string to float");
+                Console.WriteLine("Unable to convert string to float"); 
             }
         }
 
         public void AddGrade(double grade)
         {
-            if(grade >= 0 && grade <= 100) 
-            { 
                 float result = (float)grade;
                 this.AddGrade(result);
-                Console.WriteLine($"Converted double({grade}) to float({result}) and added to the list");
-            } else 
-            { 
-                Console.WriteLine("Initial double exceeds intended scope");
-            }
         }
 
         public void AddGrade(long grade)
         {
-            if (grade >= 0 && grade <= 100)
-            {
                 float result = (float)grade;
                 this.AddGrade(result);
-                Console.WriteLine($"Converted long({grade}) to float({result}) and added to the list");
-            }
-            else
-            {
-                Console.WriteLine("Initial long exceeds intended scope");
-            }
         }
 
         public void AddGrade(decimal grade)
         {
-            if (grade >= 0 && grade <= 100)
-            {
                 float result = (float)grade;
                 this.AddGrade(result);
-                Console.WriteLine($"Converted decimal({grade}) to float({result}) and added to the list");
-            }
-            else
-            {
-                Console.WriteLine("Initial decimal exceeds intended scope");
-            }
         }
 
         public void AddGrade(float grade)
@@ -123,13 +84,12 @@ namespace ChallengeApp
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
-                Console.WriteLine($"Added float ({grade}) value to the list (without conversion)");
+                Console.WriteLine($"Added float ({grade}) value to the list");
             }
             else
             {
-                Console.WriteLine("Initial float exceeds intended scope");
+                Console.WriteLine("Initial value exceeds intended scope");
             }
-
         }
 
         public Statistics GetStatistics() 
