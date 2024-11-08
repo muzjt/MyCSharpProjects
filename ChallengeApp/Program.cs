@@ -1,17 +1,15 @@
 ﻿using ChallengeApp;
 
 var employee = new Employee("Antoni", "Nowak");
-Random random = new Random();
-float randomMin = 1.0f;
-float randomMax = 10.0f;
-for (int i = 0; i < 5; i++) 
-{
-    float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
-    employee.AddGrade(randomRange);
-}
-
+employee.AddGrade(10);
+employee.AddGrade(2.2f);
+employee.AddGrade("101");
+employee.AddGrade(99.99);
+employee.AddGrade(87L);
+employee.AddGrade(50.19m);
 var statistics = employee.GetStatistics();
 Console.WriteLine($"Average: {statistics.Average:N2}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");
+Console.WriteLine($"Number of grades inside list: {employee.GradesCount}");
 
