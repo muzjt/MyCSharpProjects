@@ -16,7 +16,7 @@ namespace ChallengeApp.Tests
                 float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
                 employee.AddGrade(randomRange);
             }
-            var statistics = employee.GetStatisticsWithForEach();
+            var statistics = employee.GetStatistics();
 
             // assert
             Assert.AreNotEqual(statistics.Min, statistics.Max);
@@ -36,7 +36,7 @@ namespace ChallengeApp.Tests
                 float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
                 employee.AddGrade(randomRange);
             }
-            var statistics = employee.GetStatisticsWithFor();
+            var statistics = employee.GetStatistics();
 
             // assert
             Assert.IsTrue(statistics.Min<statistics.Max);
@@ -56,7 +56,7 @@ namespace ChallengeApp.Tests
                 float randomRange = (float)(random.NextDouble() * (randomMax - randomMin) + randomMin);
                 employee.AddGrade(randomRange);
             }
-            var statistics = employee.GetStatisticsWithDoWhile();
+            var statistics = employee.GetStatistics();
 
             // assert
             Assert.IsTrue(statistics.Max > statistics.Min);
@@ -72,7 +72,7 @@ namespace ChallengeApp.Tests
             employee.AddGrade(5);
 
             // act
-            var statistics = employee.GetStatisticsWithWhile();
+            var statistics = employee.GetStatistics();
 
             // assert
             Assert.AreEqual(5, statistics.Max);
@@ -88,7 +88,7 @@ namespace ChallengeApp.Tests
             employee.AddGrade(5);
 
             // act
-            var statistics = employee.GetStatisticsWithWhile();
+            var statistics = employee.GetStatistics();
 
             // assert
             Assert.AreEqual(2, statistics.Min);
@@ -104,7 +104,7 @@ namespace ChallengeApp.Tests
             employee.AddGrade(5);
 
             // act
-            var statistics = employee.GetStatisticsWithWhile();
+            var statistics = employee.GetStatistics();
 
             // assert
             Assert.AreEqual(Math.Round(3.67, 2), Math.Round(statistics.Average, 2));
