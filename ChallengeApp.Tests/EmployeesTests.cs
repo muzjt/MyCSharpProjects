@@ -110,5 +110,22 @@ namespace ChallengeApp.Tests
             Assert.AreEqual(Math.Round(3.67, 2), Math.Round(statistics.Average, 2));
         }
 
+        [Test]
+        public void CheckIfCharIsBeingAddedCorrectly()
+        {
+            // arrange
+            var employee = new Employee("Krystyna", "Janowicz");
+            employee.AddGrade('A');
+            employee.AddGrade('B');
+            employee.AddGrade('C');
+
+            // act
+            var statistics = employee.GetStatistics();
+
+            // assert
+            Assert.AreEqual(240, employee.GradesSummary);
+
+        }
+
     }
 }

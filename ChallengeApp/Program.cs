@@ -1,13 +1,33 @@
 ﻿using ChallengeApp;
 
-var employee = new Employee("Antoni", "Nowak");
-employee.AddGrade(10);
-employee.AddGrade(2.2f);
-employee.AddGrade("101");
-employee.AddGrade(99.99);
-employee.AddGrade(87L);
-employee.AddGrade(50.19m);
+Console.WriteLine("Welcome to employees evaluation program");
+Console.WriteLine("=======================================");
+Console.WriteLine();
+
+var employee = new Employee();
+
+while (true)
+{
+    Console.WriteLine("Add employee grade or press 'q' to view grades: ");
+    var input = Console.ReadLine();
+    char inputC = input[0];
+    if (input == "q")
+    {
+        break;
+    } else if (input.Length == 1 && !char.IsDigit(inputC))
+    {
+        employee.AddGrade(inputC);
+    } else 
+    {
+        employee.AddGrade(input);
+    }
+}
+
 var statistics = employee.GetStatistics();
+Console.WriteLine($"AVG: {statistics.Average}");
+Console.WriteLine($"MIN: {statistics.Min}");
+Console.WriteLine($"MAX: {statistics.Max}");
+
 
 
 
