@@ -10,21 +10,30 @@ while (true)
 {
     Console.WriteLine("Add employee grade or press 'q' to view grades: ");
     var input = Console.ReadLine();
-    char inputC = input[0];
     if (input == "q")
     {
         break;
-    } else if (input.Length == 1 && !char.IsDigit(inputC))
+    }
+
+    try
     {
-        employee.AddGrade(inputC);
-    } else 
+        if (input.Length == 1 && !char.IsDigit(input[0]))
+        {
+            employee.AddGrade(input[0]);
+        }
+        else
+        {
+            employee.AddGrade(input);
+        }
+    }
+    catch(Exception exception)
     {
-        employee.AddGrade(input);
+        Console.WriteLine($"Exception catched: {exception.Message}");
     }
 }
 
 var statistics = employee.GetStatistics();
-Console.WriteLine($"AVG: {statistics.Average}");
+Console.WriteLine($"AVG: {statistics.Average}"); 
 Console.WriteLine($"MIN: {statistics.Min}");
 Console.WriteLine($"MAX: {statistics.Max}");
 

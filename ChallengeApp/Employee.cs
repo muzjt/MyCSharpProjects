@@ -5,6 +5,8 @@ namespace ChallengeApp
 {
     public class Employee
     {
+        private const char sex = 'M';
+
         private List<float> grades = new List<float>();
         public Employee(string name, string surname, string age)
         {
@@ -62,7 +64,7 @@ namespace ChallengeApp
             } 
             else 
             {
-                Console.WriteLine("Unable to convert string to float"); 
+                throw new Exception("Unable to convert string to float");
             }
         }
 
@@ -89,11 +91,10 @@ namespace ChallengeApp
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
-                Console.WriteLine($"Added float ({grade}) value to the list");
             }
             else
             {
-                Console.WriteLine("Initial value exceeds intended scope");
+                throw new Exception("Initial value exceeds intended scope");
             }
         }
 
@@ -122,8 +123,7 @@ namespace ChallengeApp
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong letter");
-                    break;
+                    throw new Exception("Wrong letter");
             }
         }           
 
