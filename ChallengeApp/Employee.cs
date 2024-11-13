@@ -3,32 +3,36 @@ using System.Diagnostics;
 
 namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        private const char sex = 'M';
 
         private List<float> grades = new List<float>();
-        public Employee(string name, string surname, string age)
-        {
-            this.Name = name;
-            this.Surname = surname;
-            this.Age = age;
-        }
 
-        public Employee(string name, string surname)
+        public Employee()
+            : this("no name")
         {
-            this.Name = name;
-            this.Surname = surname;
         }
 
         public Employee(string name)
+            : this(name, "no surname")
         {
-            this.Name = name;
         }
 
-        public Employee()
+        public Employee(string name, string surname)
+            : base(name, surname)
         {
         }
+
+        public Employee(string name, string surname, string age)
+           : base(name, surname, age)
+        {
+        }
+
+        public Employee(string name, string surname, string age, string sex)
+           : base(name, surname, age, sex)
+        {
+        }
+
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
