@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
 
         private List<float> grades = new List<float>();
@@ -14,25 +14,15 @@ namespace ChallengeApp
         }
 
         public Employee(string name)
-            : this(name, "no surname")
         {
+            this.Name = name;
         }
 
         public Employee(string name, string surname)
-            : base(name, surname)
         {
+            this.Name = name;
+            this.Surname = surname;
         }
-
-        public Employee(string name, string surname, string age)
-           : base(name, surname, age)
-        {
-        }
-
-        public Employee(string name, string surname, string age, string sex)
-           : base(name, surname, age, sex)
-        {
-        }
-
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
@@ -56,8 +46,8 @@ namespace ChallengeApp
         public void AddGrade(int grade)
         {
             
-         float intToFloatGrade = (float)grade;
-         this.AddGrade(intToFloatGrade);
+         float result = (float)grade;
+         this.AddGrade(result);
         }
 
         public void AddGrade(string grade) 
