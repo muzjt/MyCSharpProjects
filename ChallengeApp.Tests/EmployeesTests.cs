@@ -6,7 +6,7 @@ namespace ChallengeApp.Tests
         public void CheckIfMinGradeDiffersFromMaxGrade()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             Random random = new Random();
             float randomMin = 1.0f;
             float randomMax = 10.0f;
@@ -26,7 +26,7 @@ namespace ChallengeApp.Tests
         public void CheckIfMinGradeIsSmallerThanMaxGrade()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             Random random = new Random();
             float randomMin = 1.0f;
             float randomMax = 10.0f;
@@ -46,7 +46,7 @@ namespace ChallengeApp.Tests
         public void CheckIfMaxGradeIsBiggerThanMinGrade()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             Random random = new Random();
             float randomMin = 1.0f;
             float randomMax = 10.0f;
@@ -66,7 +66,7 @@ namespace ChallengeApp.Tests
         public void CheckIfStatisticsMaxIsCorrectMaxGrade()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             employee.AddGrade(2);
             employee.AddGrade(4);
             employee.AddGrade(5);
@@ -82,7 +82,7 @@ namespace ChallengeApp.Tests
         public void CheckIfStatisticsMinIsCorrectMinGrade()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             employee.AddGrade(2);
             employee.AddGrade(4);
             employee.AddGrade(5);
@@ -98,7 +98,7 @@ namespace ChallengeApp.Tests
         public void CheckIfStatisticsAverageIsCorrectAverageGrade()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             employee.AddGrade(2);
             employee.AddGrade(4);
             employee.AddGrade(5);
@@ -114,7 +114,7 @@ namespace ChallengeApp.Tests
         public void CheckIfCharIsBeingAddedCorrectly()
         {
             // arrange
-            var employee = new Employee("Krystyna", "Janowicz");
+            var employee = new EmployeeInMemory("Krystyna", "Janowicz");
             employee.AddGrade('A');
             employee.AddGrade('B');
             employee.AddGrade('C');

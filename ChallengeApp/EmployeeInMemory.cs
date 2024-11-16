@@ -1,32 +1,27 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.IO.Enumeration;
 
 namespace ChallengeApp
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
+        public EmployeeInMemory(string name, string surname) 
+            : base(name, surname)
+        {
+        }
+
+        public EmployeeInMemory(string name)
+            : this(name, "no surname")
+        {
+        }
+
+        public override void SayHello()
+        {
+            Console.WriteLine("Hello!");
+            base.SayHello();
+        }
 
         private List<float> grades = new List<float>();
 
-        public Employee()
-            : this("no name")
-        {
-        }
-
-        public Employee(string name)
-        {
-            this.Name = name;
-        }
-
-        public Employee(string name, string surname)
-        {
-            this.Name = name;
-            this.Surname = surname;
-        }
-
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public string Age { get; private set; }
         public float GradesSummary
         {
             get
@@ -35,52 +30,7 @@ namespace ChallengeApp
             }
         }
 
-        public float GradesCount
-        {
-            get
-            {
-                return this.grades.Count;
-            }
-        }
-
-        public void AddGrade(int grade)
-        {
-            
-         float result = (float)grade;
-         this.AddGrade(result);
-        }
-
-        public void AddGrade(string grade) 
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            } 
-            else 
-            {
-                throw new Exception("Unable to convert string to float");
-            }
-        }
-
-        public void AddGrade(double grade)
-        {
-                float result = (float)grade;
-                this.AddGrade(result);
-        }
-
-        public void AddGrade(long grade)
-        {
-                float result = (float)grade;
-                this.AddGrade(result);
-        }
-
-        public void AddGrade(decimal grade)
-        {
-                float result = (float)grade;
-                this.AddGrade(result);
-        }
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -92,36 +42,60 @@ namespace ChallengeApp
             }
         }
 
-        public void AddGrade(char grade)
+        public override void AddGrade(double grade)
         {
-            switch (grade) 
-            { 
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+
+        public override void AddGrade(int grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+
+        public override void AddGrade(char grade)
+        {
+            switch (grade)
+            {
                 case 'A':
                 case 'a':
-                    this.grades.Add(100);
+                    this.AddGrade(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.grades.Add(80);
+                    this.AddGrade(80);
                     break;
                 case 'C':
                 case 'c':
-                    this.grades.Add(60);
+                    this.AddGrade(60);
                     break;
                 case 'D':
                 case 'd':
-                    this.grades.Add(40);
+                    this.AddGrade(40);
                     break;
                 case 'E':
                 case 'e':
-                    this.grades.Add(20);
+                    this.AddGrade(20);
                     break;
                 default:
                     throw new Exception("Wrong letter");
             }
-        }           
+        }
 
-        public Statistics GetStatistics()
+        public override void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                throw new Exception("Unable to convert string to float");
+            }
+        }
+
+        public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;
@@ -139,7 +113,7 @@ namespace ChallengeApp
             }
             statistics.Average /= this.grades.Count;
 
-            switch(statistics.Average)
+            switch (statistics.Average)
             {
                 case var average when average >= 80:
                     statistics.AverageLetter = 'A';
@@ -162,5 +136,3 @@ namespace ChallengeApp
         }
     }
 }
-
- 

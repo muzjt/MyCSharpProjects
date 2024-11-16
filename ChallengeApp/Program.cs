@@ -4,7 +4,8 @@ Console.WriteLine("Welcome to employees evaluation program");
 Console.WriteLine("=======================================");
 Console.WriteLine();
 
-var employee = new Employee("Ola", "Nowak");
+var employee = new EmployeeInFile("Ola", "Nowak");
+employee.SayHello();
 
 while (true)
 {
@@ -26,7 +27,7 @@ while (true)
             employee.AddGrade(input);
         }
     }
-    catch(Exception exception)
+    catch (Exception exception)
     {
         Console.WriteLine($"Exception catched: {exception.Message}");
     }

@@ -62,9 +62,9 @@
             Assert.AreEqual(employee1.Name, employee2.Name);
         }
 
-        private Employee GetEmployee(string name)
+        private EmployeeInMemory GetEmployee(string name)
         {
-            return new Employee(name);
+            return new EmployeeInMemory(name);
         }
     }
 }
