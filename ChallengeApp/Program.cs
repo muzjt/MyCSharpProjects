@@ -4,8 +4,15 @@ Console.WriteLine("Welcome to employees evaluation program");
 Console.WriteLine("=======================================");
 Console.WriteLine();
 
-var employee = new EmployeeInFile("Ola", "Nowak");
+var employee = new EmployeeInMemory("Ola", "Nowak");
 employee.SayHello();
+employee.GradeAdded += EmployeeGradeAdded;
+
+
+void EmployeeGradeAdded(object sender, EventArgs args) 
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
 
 while (true)
 {
@@ -34,7 +41,7 @@ while (true)
 }
 
 var statistics = employee.GetStatistics();
-Console.WriteLine($"AVG: {statistics.Average}"); 
+Console.WriteLine($"AVG: {statistics.Average:N2}"); 
 Console.WriteLine($"MIN: {statistics.Min}");
 Console.WriteLine($"MAX: {statistics.Max}");
 

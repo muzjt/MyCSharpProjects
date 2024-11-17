@@ -9,6 +9,16 @@ namespace ChallengeApp
         {
         }
 
+        private void WriteMessageInConsole(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        private void WriteMessageInConsole2(string message)
+        {
+            Console.WriteLine(message.ToUpper());
+        }
+
         public EmployeeInMemory(string name)
             : this(name, "no surname")
         {
@@ -35,6 +45,7 @@ namespace ChallengeApp
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+                OnGradeAddded();
             }
             else
             {

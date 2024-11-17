@@ -29,6 +29,7 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+                    OnGradeAddded();
                 }
             }
             else
