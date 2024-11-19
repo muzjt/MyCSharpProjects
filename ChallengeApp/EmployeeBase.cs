@@ -4,15 +4,7 @@
     {
         public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-        public event GradeAddedDelegate GradeAdded;
-
-        protected void OnGradeAddded() 
-        {
-            if (GradeAdded != null)
-            {
-                GradeAdded(this, EventArgs.Empty);
-            }
-        }
+        public abstract event GradeAddedDelegate GradeAdded;
 
         public EmployeeBase(string name, string surname)
         {

@@ -2,6 +2,7 @@
 {
     public class Supervisor : IEmployee
     {
+        public event EmployeeBase.GradeAddedDelegate GradeAdded;
         public string Name => "Monika";
         public string Surname => "Kowalska";
 
@@ -12,6 +13,10 @@
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {

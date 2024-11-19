@@ -1,11 +1,15 @@
-﻿namespace ChallengeApp
+﻿using System.Diagnostics;
+
+namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
 
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
 
-        public EmployeeInFile(string name, string surname) 
+        public EmployeeInFile(string name, string surname)
             : base(name, surname)
         {
         }
@@ -23,13 +27,16 @@
 
         public override void AddGrade(float grade)
         {
-            
+
             if (grade >= 0 && grade <= 100)
             {
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
-                    OnGradeAddded();
+                }
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
                 }
             }
             else
@@ -94,50 +101,15 @@
         public override Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            int lineCount = 0;
-            if (File.Exists(fileName)) 
-                foreach(var gradePerLine in File.ReadLines(fileName)) 
+            if (File.Exists(fileName))
+                foreach (var gradePerLine in File.ReadLines(fileName))
                 {
-                    var number = float.Parse(gradePerLine);
-
-                    if (number >= 0)
+                    if (float.TryParse(gradePerLine, out float result)) 
                     {
-                        statistics.Max = Math.Max(statistics.Max, number);
-                        statistics.Min = Math.Min(statistics.Min, number);
-                        statistics.Average += number;
-                        lineCount++;
+                        statistics.AddGrade(result);
                     }
                 }
-            statistics.Average /= lineCount;
-            switch (statistics.Average)
-            {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
-            }
             return statistics;
-        }
-        public void RemoveGrades()
-        {
-            if (File.Exists(fileName))
-            {
-                File.WriteAllText(fileName, string.Empty);
-            }
         }
     }
 }
